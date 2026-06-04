@@ -7,9 +7,9 @@ let package = Package(
         .library(name: "CTrueTime", targets: ["CTrueTime"])
     ],
     targets: [
-        .target(
+        .systemLibrary(
             name: "CTrueTime",
-            dependencies: ["CTrueTime"]
+            pkgConfig: "truetime"
         )
     ]
 )
