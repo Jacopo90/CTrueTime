@@ -1,7 +1,15 @@
-// swift-tools-version:5.6
-
+// swift-tools-version: 5.9
 import PackageDescription
 
 let package = Package(
-    name: "CTrueTime"
+    name: "CTrueTime",
+    products: [
+        .library(name: "CTrueTime", targets: ["CTrueTime"])
+    ],
+    targets: [
+        .target(
+            name: "CTrueTime",
+            dependencies: ["CTrueTime"]
+        )
+    ]
 )
