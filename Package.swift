@@ -2,14 +2,38 @@
 import PackageDescription
 
 let package = Package(
-    name: "CTrueTime",
+    name: "TrueTime",
     products: [
-        .library(name: "CTrueTime", targets: ["CTrueTime"])
+        // Questo è il prodotto che la tua app importerà
+        .library(
+            name: "TrueTime",
+            targets: ["TrueTime"]
+        ),
+    ],
+    dependencies: [
+        // La tua dipendenza Alamofire (se ti serve nel progetto)
+        .package(url: "https://github.com/Alamofire/Alamofire.git", exact: "5.11.1")
     ],
     targets: [
-        .systemLibrary(
+        // 1. Il target in C (CTrueTime)
+        .target(
             name: "CTrueTime",
-            pkgConfig: "truetime"
+            dependencies: [],
+            path: "Sources/CTrueTime" // Assicurati che il path sia corretto
+        ),
+        // 2. Il target in Swift (TrueTime) che DIPENDE da CTrueTime
+        .target(
+            name: "TrueTime",
+            dependencies: [
+                "CTrueTime",
+                .product(name: "Alamofire", package: "Alamofire")
+            ],
+            path: "Sources/TrueTime"
+        ),
+        // Target di test (opzionale)
+        .testTarget(
+            name: "TrueTimeTests",
+            dependencies: ["TrueTime"]
         )
     ]
 )
