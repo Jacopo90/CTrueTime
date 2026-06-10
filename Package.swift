@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "TrueTime",
+    name: "CTrueTime",
     products: [
         // Questo è il prodotto che la tua app importerà
         .library(
